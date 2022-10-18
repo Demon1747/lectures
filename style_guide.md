@@ -227,6 +227,15 @@ void print_first_n_elem(const vector<int>& v, size_t n) {
 }
 ```
 
+## Code Style Formatter
+В CLion его можно настроить следующим образом:
+>File -> Settings (либо CTRL+ALT+S) -> Editor -> Code Style -> C/C++ (выбрать, раскрыв панель Code Style слева) -> Set from -> Google -> OK
+
+По умолчанию работает сочетание клавиш CTRL+ALT+L, настроить его при желании можно:
+>File -> Settings (либо CTRL+ALT+S) -> Keymap -> Main Menu -> Code -> Reformat Code
+
+---
+
 # Подсказки
 
 * Если требуется создать `std::vector` размера n, воспользуйтесь специальным конструктором.
