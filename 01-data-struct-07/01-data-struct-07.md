@@ -39,12 +39,16 @@ slideNumber: true
 
 --
 
+### Опять работа
+Нужно написать свой `string`
+
+--
+
 #### В предыдущих сериях
 
 --
 
 ### Виды памяти
-
 - `static` -- _хранилище глобальных переменных_
 - `stack` -- _хранилище локальных переменных (и не только)_
 - `heap` -- _динамическая память (много памяти)_
@@ -144,7 +148,7 @@ delete[] arr;  // фиксируем прибыль
 ```cpp
 int** arr = new int*[n2];  // создаём указатель на указатель
 for (size_t i; i < n2; ++i) { 
-  arr[i] = new int[n1];  // выделяем память
+  arr[i] = new int[n1]();  // выделяем память
 }
 
 for (size_t i; i < n2; ++i) {  // освобождаем в том же порядке
@@ -171,106 +175,23 @@ delete[] arr;
 
 ---
 
+### Конструкторы и деструкторы
+- **Конструктор** -- _блок операторов, служащий для инициализации объекта, имя совпадает с именем класса_
+- **Деструктор** -- _блок операторов, служащий для уничтожения объекта, в классах выглядит:
 
-#### Небольшой list
-
-* `std::find`
-* `std::find_if`
-* `std::count_if`
-* `std::transform`
-* `std::sort`
-* `std::any_of`
-* `std::for_each`
+`~<ClassName>`
 
 --
 
-### std::find
+### RAII
+>Resourse Acquisition is Initialisation 
 
-Возвращает итератор на первый элемент, равный `value`
-
-```cpp
-template< class InputIt, class T >
-InputIt find( InputIt first, InputIt last, const T& value);
-```
+>Получение некоторого ресурса неразрывно совмещается с инициализацией, а освобождение -- с уничтожением объекта
 
 --
 
-### std::find_if
-
-Возвращает итератор на первый элемент, удовлетворяющий условию `pred`
-
-```cpp
-template<class InputIterator, class Predicate>
-InputIterator find_if(InputIterator first, InputIterator last, Predicate pred);
-```
+### Одними конструкторами дело не ограничится
 
 --
 
-### std::any_of
-
-Проверяет, выполняется ли pred хоть для одного элемента последовательности
-
-```cpp
-template< class InputIt, class UnaryPredicate >
-bool any_of(InputIt first, InputIt last, UnaryPredicate pred);
-```
-
---
-
-### std::count_if
-
-Возвращает количество элементов, удовлетворяющих условию `pred`
-
-```cpp
-template< class InputIt, class UnaryPredicate >
-typename iterator_traits<InputIt>::difference_type
-count_if(InputIt first, InputIt last, UnaryPredicate pred);
-```
-
---
-
-### std::for_each
-
-Выполняет функцию для каждого элемента
-
-```cpp
-template< class InputIt, class UnaryFunction >
-UnaryFunction for_each( InputIt first, InputIt last, UnaryFunction f );
-```
-
---
-
-### std::transform
-
-Возвращает результат применения функции к каждому элементу последовательности
-
-```cpp
-template <class InIter, class OutIter, class Funс>
-OutIter transform(InIter start, InIter end,
-		  OutIter result, Func unaryfunc);
-```
-
---
-
-### std::sort
-Сортирует
-
-```cpp
-template<class RandomAccessIterator>
-void sort(RandomAccessIterator first,
-          RandomAccessIterator last);
-
-template<class RandomAccessIterator, class Predicate>
-void sort(RandomAccessIterator first,
-          RandomAccessIterator last,
-          Predicate comp);
-```
-
----
-
-### lambda functions
-aka. анонимные функции
-
---
-
-![](/src/lambda)
+![](/src/void-pointer.jpg)
