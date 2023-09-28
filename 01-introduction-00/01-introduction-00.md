@@ -1,240 +1,216 @@
 ---
-theme : "night"
-transition: "slide"
-highlightTheme: "darkula"
+theme : "theme/monokai-pro.css"
+highlight-theme: "monokai"
+reveal-options:
+  transition: "fade"
 slideNumber: true
 ---
-<style type="text/css">
-  .reveal pre code {
-    font-size: 1em;
-    line-height: 1.2;
-    height: 200%;
-    max-height: 1000% !important;
-  }
-  .reveal section p {
-    display: inline-block;
-    font-size: 0.9em;
-    line-height: 1em;
-    vertical-align: top;
-  }
-
-  .reveal section li {
-    font-size: 0.9em;
-    line-height: 1em;
-    vertical-align: top;
-  }
-
-  .reveal section table {
-    display: inline-block;
-    font-size: 0.7em;
-    line-height: 1.2em;
-    vertical-align: top;
-  }
-
-</style>
-
 
 # Сибирь I
 Как начать свой путь в программировании
 
---
+---
+
+## Мотивирующая прелюдия
+
+А собственно зачем нам C++??
+
+----
+
+![](./src/language.jpg)
+
+----
+
+## А если серьёзно
+
+- C++ - лучший язык для начала программирования
+- C++ активно используется в громаде современных проектов
+- C++ можно запустить везде
+- C++ может всё
+
+----
+
+### Почему лучший?
+
+В C++ представлены (почти) все используемые концепты программирования:
+- Функциональное программирование
+- Структурное программирование
+- Объектно-ориентированное программирование
+- Многопоточность
+- Ручное управление памятью
+
+----
+
+### Где используется?
+- Android (NDK) и iOS
+- Игрушки различные
+- QT
+- Python (внезапно)
+- Операционные системы
+- Прошивки и прочее низкоуровневое
+
+----
+
+#### Где можно запустить?
+- *NIX и подобные
+- Windows
+- Прочие не *NIX-подобные
+- Отсутствие операционной системы
+- Распределённые ужасы
+
+----
+
+### А что может?
+- C++ - низкоуровневый ЯП (можно цепляться к железу)
+- C++ имеет интерфейсы к операционной системе
+- C++ имеет самый большой набор библиотек, в том числе C
+
+----
+
+### C++ - это круто, даже если вы его не используете
+
+---
 
 #### Наши инструменты
 
-- Github
-- CLion
+- GitHub
+- VSCode
 - Google
 
 ---
 
-# Github
+# GitHub
 И как с ним бороться
 
---
+----
 
 ### Как это работает
 ![](./src/GitHub-Flow.png)
 
---
+----
 
 ### Как скачать репозиторий
 
 ```
-Команда для клонирования в консоли:
-git clone --recurse-submodules <ссылка на репозиторий>
+Команда для клонирования в терминале:
+git clone <ссылка на репозиторий>
 ```
 
---
+----
 
 #### Находим репозиторий на Git
 ![](./src/image_2022-09-19_08-09-51.png)
 
---
+----
 
 ![](./src/image_2022-09-19_08-09-52.png)
 
---
+----
 
 #### Копируем ссылку
-![](./src/image_2022-09-19_08-12-10.png)
+![](./src/clone-link.png)
 
---
+----
 
-![](./src/image_2022-09-19_08-12-11.png)
-
---
-
-#### Открываем GitBash (Windows)
+#### Открываем Терминал (Windows)
 ![](./src/image_2022-09-19_08-15-17.png)
 
---
+----
 
 ![](./src/image_2022-09-19_08-15-18.png)
 
---
+----
 
-#### Клонируем репозиторий
-Используем git clone --recurse-submodules <ссылка>
+#### Генерируем ключ
 
-![](./src/image_2022-09-19_11-36-54.png)
+```bash
+ssh-keygen
+```
 
---
+И запоминаем следующее:
 
-#### Вводим свои данные
-![](./src/image_2022-09-19_11-39-43.png)
+```bash
+cat ~/.ssh/id_rsa.pub
+```
 
---
-
-#### Получаем ошибку, копируем указанную ссылку
-![](./src/image_2022-09-19_11-58-33.png)
-
---
-
-#### Внимательно читаем и ищем решение
-![](./src/image_2022-09-19_11-47-27.png)
-
---
-
-#### Открываем туториал по генерации токена
-![](./src/image_2022-09-19_11-49-18.png)
-
---
-
-### Или же можно воспользоваться этой презентацией
-
---
+----
 
 #### User settings
 
 ![](./src/image_2022-09-19_11-53-03.png)
 
---
+----
 
 #### Копаемся в настройках
 
-![](./src/image_2022-09-19_12-00-29.png)
+![](./src/ssh-key-settings.png)
 
---
+----
 
-![](./src/image_2022-09-19_12-01-45.png)
+![](./src/ssh-add-key.png)
 
---
+----
 
-![](./src/image_2022-09-19_12-03-04.png)
+![](./src/ssh-add-key-confirm.png)
 
---
+----
 
-#### Генерируем токен
+#### Клонируем репозиторий
+Используем git clone <ссылка>
 
-![](./src/image_2022-09-19_12-04-14.png)
+```bash
+anton@tartarus:~/Code/ISCRA/CBeer> git clone git@github.com:bmstu-cbeer-2023/01-lab-00-introduction-CoolUser.git
+Cloning into '01-lab-00-introduction-CoolUser'...
+remote: Enumerating objects: 181, done.
+remote: Counting objects: 100% (181/181), done.
+remote: Compressing objects: 100% (155/155), done.
+remote: Total 181 (delta 30), reused 166 (delta 21), pack-reused 0
+Receiving objects: 100% (181/181), 33.53 MiB | 784.00 KiB/s, done.
+Resolving deltas: 100% (30/30), done.
+```
 
---
-
-#### Указываем параметры
-
-![](./src/image_2022-09-19_12-09-02.png)
-
---
-
-#### Создаем токен
-![](./src/image_2022-09-19_12-09-51.png)
-
---
-
-#### Обязательно сохраняем
-![](./src/image_2022-09-19_12-13-47.png)
-
---
-
-#### ОБЯЗАТЕЛЬНО сохраняем
-![](./src/image_2022-09-19_12-20-26.png)
-
---
-
-#### "Используй пароль" говорили они
-![](./src/image_2022-09-19_12-15-15.png)
-
---
-
-#### Теперь все работает
-![](./src/image_2022-09-19_12-19-27.png)
-
---
+----
 
 ### Магия
 ![](./src/image_2022-09-19_12-24-15.png)
 
---
+---
 
 ## Теперь можно писать код
 
----
+----
 
-# CLion
+# VSCode
+## Или другой IDE/текстовый редактор
 
 Орудие, несущее свет
 
---
+----
 
-### Как открыть проект
-![](./src/image_2022-09-19_12-30-34.png)
+### Интересные плагины, с которыми хочется жить
 
---
+- Meson (от mesonbuild)
+- CodeLLDB (от vadimcn)
+- WSL (для Windows)
 
-#### Доверие -- важно
-![](./src/image_2022-09-19_12-31-37.png)
+----
 
---
+### Открываем, доверяем, пишем код
 
-#### Настраиваем инструментарий при необходимости
-![](./src/image_2022-09-19_12-34-49.png)
+----
 
---
+### Устройство лабораторной
 
-#### Ничего не работает, но очень красиво
-![](./src/image_2022-09-19_12-38-02.png)
+![](./src/lab-structure.png)
 
---
+----
 
-#### Расеомментируем строку для загрузки Gtest
-![](./src/image_2022-09-19_12-39-46.png)
+### Написали код в новом файле?
 
---
+- `sources/` - внесите его в `sources/meson.build`
+- `headers/` - ничего делать не надо
 
-#### Перезагрузка (решает 93.9% проблем)
-![](./src/image_2022-09-19_12-41-32.png)
-
---
-
-#### Теперь все работает
-![](./src/image_2022-09-19_12-45-42.png)
-
---
-
-#### Пишем и запускаем свою первую программу
-![](./src/image_2022-09-19_13-12-45.png)
-
---
+----
 
 ### Как устроена типичная программа
 
@@ -247,67 +223,89 @@ int main() {
 }
 ```
 
---
+----
 
 #### Первые команды
 
 ```cpp
-std::cout << "Текст"        - вывод текста на экран   
-
+std::cout << "Текст"        - вывод текста на экран
 std::cout << "Welcome to the club, partner";
-
-
 std::endl;                   - переход на следующую строку
-
 std::cout << "Some text" << std::endl;
 ```
 
---
+----
 
 ### Самое время показать свое детище миру
 
 ---
 
-## Загрузка на Git
-или как не испортить ветку master
+## Загрузка на GitHub
+или как не испортить `master`
 
---
+----
+
+### Предварительная настройка
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your@email.tld"
+```
+Иначе будет ругаться на `git commit`
+
+----
 
 ### Вот они слева направо
 
-```
+```bash
 cd ./dir_name                             - переход в директорию
-git checkout <название ветки>             - переход на другую ветку
+git branch <название ветки>               - создать новую ветку
+git switch <название ветки>               - переход на другую ветку
 
-git add <Имя файла>                       - добавление файла в коммит
+git add <имя файла>                       - добавление файла в коммит
 git commit -m "<Комментарий>"             - подготовка коммита
 git push origin <название ветки>          - отправляем на гит
 ```
 
---
+----
 
-#### Это не взлом Пентагона 
-![](./src/image_2022-09-19_13-27-47.png)
+#### Это не взлом Пентагона
 
---
-
-![](./src/image_2022-09-19_13-27-48.png)
-
---
-
-#### Это уже похоже, но все еще не то 
-![](./src/image_2022-09-19_13-32-45.png)
-
---
+```bash
+anton@tartarus:~/Code/ISCRA/CBeer/examble-repo> git branch wp/lab
+anton@tartarus:~/Code/ISCRA/CBeer/examble-repo> git switch wp/lab
+Switched to branch 'wp/lab'
+anton@tartarus:~/Code/ISCRA/CBeer/examble-repo> git add new-file
+anton@tartarus:~/Code/ISCRA/CBeer/examble-repo> git commit -m 'lab done'
+[wp/lab 6c479e6] lab done
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 new-file
+anton@tartarus:~/Code/ISCRA/CBeer/examble-repo> git push origin wp/lab
+```
+----
 
 ### Еще немного...
 ![](./src/image_2022-09-19_13-42-25.png)
 
---
+----
 
-#### Создаем Pull request
+### Создаем Pull request
 ![](./src/image_2022-09-19_13-43-34.png)
+
+----
+
+### Отправили на проверку
+
+`/check_me https://github.com/bmstu-cbeer-2023/01-lab-00-introduction-CoolUser/pulls/1`
 
 ---
 
-> У программиста нет push в master, только pull request
+### У меня что-то не работает, что делать?
+
+Спросить. Мы отвечаем на вопросы. Честно!
+
+![](./src/help.jpg)
+
+---
+
+> У программиста нет push в master, только pull request - Дмитрий Михайлович Степанов
