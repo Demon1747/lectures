@@ -1,7 +1,7 @@
 ---
 theme : "night"
 transition: "slide"
-highlightTheme: "darkula"
+highlightTheme: "vs"
 slideNumber: true
 ---
 <style type="text/css">
@@ -90,12 +90,22 @@ std::cin >> x >> y;
 
 --
 
-### ASCII (char == int?)
+##### ASCII (char == int?)
 ![](./src/ascii-light.png)
 
 --
 
+`C language moment`
+
+![](./src/all-is-number.jpg)
+
+--
+
 #### Любую переменную встроенного типа данных _нужно инициализировать_, чтобы в ней не хранился мусор
+
+--
+
+![](./src/uninitialized-memory.jpg)
 
 --
 
@@ -188,7 +198,6 @@ std::cout << big_str << " size = " << big_str.size();
 
 ```
 
-
 ---
 
 ### Условия
@@ -220,19 +229,20 @@ cond_a != cond_b // не равно
 
 ## Циклы
 > Цикл -- это повторение одного и того же действия раз за разом в надежде на конечность цикла
+![](./src/madness.jpg)
 
 --
 
 ## while () {}
 ```cpp
 while (condition) {
-  ...
+  ...         // крутимся, пока condition == true
   if (flag) {
-    break; // позволяет выйти из цикла досрочно
+    break;    // позволяет выйти из цикла досрочно
   }
   ...
 }
-... // Начинается, как только condition == true
+...           // продолжаем выполнение программы
 ```
 
 --
@@ -252,7 +262,25 @@ for (;;) {
 }
 ```
 
+--
+
+### `do {} while ()` -- не нужен
+
+--
+
+![](./src/do-while.jpg)
+
 ---
 
 #### LET'S PARTY
 ![](./src/commando.gif)
+
+---
+
+#### Немного о кодстайле
+![](./src/codestyle.jpg)
+
+--
+
+### Полезные материалы
+![](./src/boost-mem.jpeg)
