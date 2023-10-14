@@ -22,6 +22,8 @@ namespace Google {
   size_t results_number(const std::string&);
 }
 
+void test_namespace();
+
 // Область видимости
 void function();
 

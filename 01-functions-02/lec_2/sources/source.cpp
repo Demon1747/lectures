@@ -24,6 +24,18 @@ void function() {
   if (i > 0) {
     int x = 10;
   }
+
+  {
+    int x = 0;
+    //function();
+  }
+
 //  x = 5;
 //  std::cout << x << std::endl;
+}
+
+void test_namespace() {
+  std::string search = "Poisk";
+  std::cout << "Google: " << Google::results_number(search) << std::endl;
+  std::cout << "Yandex: " << Yandex::results_number(search) << std::endl;
 }

@@ -1,7 +1,7 @@
 ---
 theme : "night"
 transition: "slide"
-highlightTheme: "darkula"
+highlightTheme: "vs"
 slideNumber: true
 ---
 <style type="text/css">
@@ -32,7 +32,8 @@ slideNumber: true
   }
 
 </style>
-
+[comment]: <> (highlightTheme: "darkula")
+[//]: <> (highlightTheme: "darkula")
 
 #### Сибирь I
 ## Функции
@@ -51,7 +52,7 @@ slideNumber: true
 
 ## Теория
 
----
+--
 
 ## Функции
 _Это атомы, из которых состоит тело программы_
@@ -61,10 +62,10 @@ _Это атомы, из которых состоит тело программ
 #### Строение функции
 
 ```cpp
-int function_name(int arg1, const int arg2) {     // заголовок функции
+int function_name(int arg1, const int arg2) {     // заголовок
   ...                           // тело функции
   ...
-  return result;                // возвращение значения
+  return result;                // возврат значения
 }                               // конец определения функции
 
 const std::string num_in_text(double arg);
@@ -88,7 +89,11 @@ void function_name(int arg, std::string& result) {
 
 --
 
-#### Область видимости
+#### Область видимости переменной
+Это часть программы, в которой переменную можно использовать и изменять
+
+--
+
 ```cpp
 // Что выведет программа?
 
@@ -126,7 +131,27 @@ maine_coon++;
 std::cout << "cat = " << &cat << ", m_c = " << &maine_coon << std::endl;
 // cat и maine_coon взаимозаменяемы, ссылаются на 
 // одно и то же значение и адрес в памяти
+```
 
+--
+
+>Объявление -- указывает уникальное имя сущности, её тип и другие характеристики
+
+>Определение -- предоставляет компилятору сведения для создания машинного кода
+
+--
+
+```cpp
+int find_test();  // Объявление функции, чтобы main увидела её
+
+int main() {
+  ...
+  return 0;
+}
+
+int find_test() { // Определение функции
+  ...
+}
 ```
 
 --
@@ -150,8 +175,12 @@ void smth() {
   func3(time);
   ...
 }
-
 ```
+
+--
+
+### Важно
+Здесь мы имеем дело с lvalue-ссылками, которые указывают на изменяемые объекты
 
 ---
 
@@ -160,7 +189,6 @@ void smth() {
 --
 
 ### Пример:
-
 ![](./src/project.png)
 
 --
@@ -177,7 +205,7 @@ int main() {
   return 0;
 }
 
-int find_test() {
+int find_test() { // Определение функции
   std::vector<int> array({0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
   auto res = find(array.begin(), array.end(), 8);
   std::cout << *res;
@@ -275,7 +303,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         )
 
 target_link_libraries(main ${PROJECT_NAME})
-
 ```
 
 ---
