@@ -1,7 +1,7 @@
 ---
 theme : "night"
 transition: "slide"
-highlightTheme: "darkula"
+highlightTheme: "vs"
 slideNumber: true
 ---
 <style type="text/css">
@@ -32,7 +32,7 @@ slideNumber: true
   }
 
 </style>
-
+[comment]: <> (highlightTheme: "darkula")
 
 #### Сибирь I
 ## Структуры
@@ -82,7 +82,6 @@ customer = "Neofarm";
 category[customer] = "Vitamines";
 product_name[customer] = "Ascorbinka";
 sum[customer] = 42000;
-
 ```
 
 --
@@ -91,11 +90,9 @@ sum[customer] = 42000;
 
 --
 
-#### Новый запрос заказчика перетирает старый
+Новый запрос заказчика перетирает старый
 
---
-
-### Неудобно, нужно что-то ещё
+#### Неудобно, нужно что-то ещё
 
 ---
 
@@ -175,7 +172,7 @@ int function() {
 ### Немного о структурах в памяти
 
 ```cpp
-// сколько занимает места?
+// сколько структура занимает места в памяти?
 
 struct Foo {
 char c;    // 1 bytes
@@ -206,7 +203,7 @@ char c;
 
 struct Bar {  // для выравнивания размер кратен 1 байту
 char c8[8];
-};
+};            // sizeof(Bar) == 8
 
 struct Test1 {
 char c;
@@ -241,6 +238,39 @@ char c;
 Bar bar;
 };            // sizeof(Test2) == 9
 ```
+
+--
+
+#### Выравнивание
+> Это свойство адреса в памяти, согласно которому адрес переменной в памяти должен быть кратен её размеру
+
+Данные в памяти могут идентифицироваться по адресу в памяти
+
+--
+
+### Примерчик
+
+```cpp
+struct x_ {
+   char a;     // 1 byte
+   int b;      // 4 bytes
+   short c;    // 2 bytes
+   char d;     // 1 byte
+} bar[3];
+
+struct actual_x_ {
+   char a;           // 1 byte
+   char _pad0[3];    // выравнивание 'b' по 4-байтной границе
+   int b;            // 4 bytes
+   short c;          // 2 bytes
+   char d;           // 1 byte
+   char _pad1[1];    // выравнивние sizeof(x_) для кратности 4
+} actual_bar[3];
+```
+
+--
+
+![](./src/Sizes.jpg)
 
 --
 
@@ -297,8 +327,11 @@ class order_analog {
 
 --
 
-> У `struct` все поля по умолчанию **публичные**, у `class` -- **приватные** 
+![](./src/we_need_to_go_deeper.jpeg)
 
+--
+
+> У `struct` все поля по умолчанию **публичные**, у `class` -- **приватные** 
 
 --
 
