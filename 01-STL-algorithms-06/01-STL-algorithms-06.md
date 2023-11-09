@@ -51,7 +51,7 @@ slideNumber: true
 --
 
 #### Вот они (контейнеры) слева направо
-![](/src/Diagramme_UML_de_STL.png)
+<img src=./src/Diagramme_UML_de_STL.png width=750>
 
 --
 
@@ -69,7 +69,7 @@ slideNumber: true
 --
 
 #### Вот они (алгоритмы) сверху вниз
-![](/src/algorithms.png)
+<img src=./src/algorithms.png width=700>
 
 --
 
@@ -167,11 +167,147 @@ void sort(RandomAccessIterator first,
           Predicate comp);
 ```
 
+--
+
+#### Хотим отсортировать в порядке убывания
+```cpp
+bool greater(int a, int b) { return a > b; }
+
+void my_sort() {
+  std::vector<int> nums = {1, 2, 3, 0, 4, 5};
+  std::sort(nums.begin(), nums.end(), greater);
+}
+```
+
 ---
 
 ### lambda functions
 aka. анонимные функции
 
+```
+[] (параметры) { выражения }
+```
+
+--
+
+#### Можно сделать предыдущий пример красивее
+```cpp
+std::sort(s.begin(), s.end(), [](int a, int b) // предикат
+                              { return a > b; });
+```
+
 --
 
 ![](/src/lambda)
+
+---
+
+### Библиотека диапазонов (ranges)
+Или немного о C++20
+
+--
+
+#### Допустим, мы хотим получить выборку из четных элементов вектора и умножить каждый элемент на 2
+
+--
+
+#### При помощи `algorithm`
+```cpp
+std::vector<int> nums = {0, 1, 2, 3, 4, 5};
+
+std::vector<int> result;
+std::copy_if(nums.begin(), nums.end(), std::back_inserter(result),
+             [](int x) { return x % 2 == 0; });
+std::transform(result.begin(), result.end(), result.begin(),
+               [](int x) { return x * 2; });
+```
+
+--
+
+#### При помощи `ranges`:
+```cpp
+std::vector<int> nums = {0, 1, 2, 3, 4, 5};
+
+auto result = 
+nums | std::views::filter([](int n) { return n % 2 == 0; })
+     | std::views::transform([](int n){ return n * 2; });
+
+// result: 0, 4, 8
+```
+
+--
+
+>`range` -- диапазон элементов, по которому можно итерироваться. Все контейнеры в STL -- это диапазоны.
+
+>`view` -- определенное представление элементов из диапазона, которое может быть результатом операции. Представление не владеет данными.
+
+--
+
+### Их много
+<img src=./src/qr-ranges.png width="300">
+
+--
+
+#### `ranges` можно применять, когда требуется применить совершать действия с контейнером целиком 
+```cpp
+std::vector<int> very_long_vec;
+
+...
+
+std::ranges::sort(very_long_vec);
+// std::sort(very_long_vec.begin(), very_long_vec.end())
+```
+
+--
+
+```cpp
+std::unordered_map<std::string, int> freqWord{{"witch", 25}, {"wizard", 33},
+                                              {"tale", 45},  {"dog", 4},
+                                              {"cat", 34},   {"fish", 23}};
+  auto names = std::views::keys(freqWord);
+  for (const auto& name : names) {
+    std::cout << name << " ";
+  }
+
+  auto values = std::views::values(freqWord);
+  for (const auto& value : values) {
+    std::cout << value << " ";
+  }
+
+```
+
+--
+
+### А если мы хотим ключи, отсортированные в обратном порядке?
+```cpp
+std::map<std::string, int> freqWord{{"witch", 25}, {"wizard", 33},
+                                    {"tale", 45},  {"dog", 4},
+                                    {"cat", 34},   {"fish", 23}};
+  auto names = std::views::reverse(std::views::keys(freqWord));
+  for (const auto& name : names) {
+    std::cout << name << " ";
+  }
+```
+
+--
+
+### Композиция функций
+Оператор `|` используется в C++20 как *синтаксический сахар* для композиции функций
+
+`R(C)` эквивалентно `C | R`
+
+~~Добро пожаловать в функциональное программирование~~
+
+--
+
+#### И выглядит приятно, и читается слева направо
+```cpp
+std::map<std::string, int> freqWord{{"witch", 25}, {"wizard", 33},
+                                    {"tale", 45},  {"dog", 4},
+                                    {"cat", 34},   {"fish", 23}};
+
+  for (const auto& name : std::views::keys(freqWord)
+                        | std::views::reverse) {
+    std::cout << name << " ";
+  }
+```
