@@ -1,7 +1,7 @@
 ---
 theme : "night"
 transition: "slide"
-highlightTheme: "darkula"
+highlightTheme: "vs"
 slideNumber: true
 ---
 <style type="text/css">
@@ -79,7 +79,12 @@ slideNumber: true
 #### Немножко духоты
 Спецификация класса состоит из:
 * Объявления класса (для удобства изучения возможностей класса в заголовочном файле)
-* Определения метдоов класса
+* Определения методов класса
+
+--
+
+### Инкапсуляция
+Это принцип, по которому внутреннее устройство сущностей нужно объединять в специальной оболочке и скрывать от вмешательства извне.
 
 --
 
@@ -140,10 +145,6 @@ string& operator=(const string& oth);
 
 #### Правило трёх и правило пяти
 
---
-
-### Инкапсуляция
-
 ---
 
 ### Шаблоны
@@ -172,3 +173,52 @@ const char* min(const char* a, const char* b) {
   return (strcmp(a, b) < 0) ? a : b;
 }
 ```
+
+---
+
+### Концепты
+Концепты добавляют семантические требования к параметрам шаблона
+
+--
+
+<img src=./src/ProgrammerHumor-y7slof.jpg width=700>
+
+--
+
+### Пример
+```cpp
+#include <concepts>
+#include <iostream>
+
+template<typename T>
+requires std::integral<T>
+auto gcd(T a, T b) {
+  if( b == 0 ) return a;
+  else return gcd(b, a % b);
+}
+
+template<typename T>
+auto gcd1(T a, T b) requires std::integral<T> {
+  if( b == 0 ) return a;
+  else return gcd1(b, a % b);
+}
+```
+
+--
+
+```cpp
+template<std::integral T>
+auto gcd2(T a, T b) {
+  if( b == 0 ) return a;
+  else return gcd2(b, a % b);
+}
+
+auto gcd3(std::integral auto a, std::integral auto b) {
+  if( b == 0 ) return a;
+  else return gcd3(b, a % b);
+}
+```
+
+--
+
+Ключевое слово `requires` задает требования к шаблону на время компиляции
