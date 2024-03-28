@@ -5,21 +5,22 @@
 template <class T>
 class Number {
  public:
-
   Number() = default;
 
-  Number(const T& input) { field = std::make_unique<T>(new T(input)); }
+  Number(const T& input) {
+    field = new T(input);
+  }
 
-  Number(T&& input) { field = std::make_unique<T>(new T(input)); }
+  Number(T&& input) {
+    field = new T(input);
+  }
 
 
  private:
-  std::unique_ptr<T> field;
+  int* field;
 };
 
-
-
-int main() {
+void smart_ptr_example() {
   int* spec_ref_a = nullptr;
   int* spec_ref_b = nullptr;
   std::shared_ptr<int> spec_ref_c = nullptr;
@@ -39,5 +40,23 @@ int main() {
     spec_ref_b = ref_b;
   }
 
-  return 0;
+  std::cout << spec_ref_c.use_count() << std::endl;
+}
+
+template<class T>
+void func(T&& arg) {
+  Number aaaaaa(std::move(arg));
+}
+
+void move_example() {
+  int x = 52;
+  int y = 123;
+  Number a(42);
+  Number b(y);
+  func(x);
+}
+
+int main() {
+  smart_ptr_example();
+  move_example();
 }
